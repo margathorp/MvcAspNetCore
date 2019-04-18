@@ -1,6 +1,5 @@
 const superb = require('superb')
 
-
 module.exports = {
   prompts() {
     return [
@@ -10,13 +9,8 @@ module.exports = {
         default: ""
       },
       {
-        name: 'Area',
-        message: 'Nome da Area',
-        default: ""
-      },
-      {
         name: 'Controller',
-        message: 'Nome do Controller',
+        message: 'Nome da Area/Controller',
         default: ""
       },
       {
@@ -40,10 +34,9 @@ module.exports = {
 
     ]
   },
-  
   actions: [
     {
-      type: 'add',
+      type: 'move',
       files: 'Controller.cs'
     },
     {
@@ -64,15 +57,17 @@ module.exports = {
     },
     {
       type: 'add',
+      files: 'Details.cshtml'
+    },
+    {
+      type: 'add',
       files: 'Delete.cshtml'
     },
     {
       type: 'add',
-      files: 'Index.cshtml'
-    },
-    
+      files: 'Index.cshtml' 
+    }
   ],
-  
   async completed() {
     this.gitInit()
     await this.npmInstall()

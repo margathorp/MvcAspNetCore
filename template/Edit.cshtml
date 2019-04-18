@@ -1,0 +1,159 @@
+<%
+    var fields = Fields.split("|");
+    var nome = "";
+    var tipo = "";
+    var mask = "";
+    var hidden = "";    
+%>
+@@model <%=Projeto%>.Models.Context<%=ObjContext%>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- begin:: Content Head -->
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-subheader__main">
+        <h3 class="kt-subheader__title"><%=Area%></h3>
+        <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+        <span class="kt-subheader__desc"><%=Controller%></span>
+        
+        <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
+            <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
+            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                <span><i class="flaticon2-search-1"></i></span>
+            </span>
+        </div>
+    </div>    
+</div>
+<!-- end:: Content Head -->
+<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <!--begin::Portlet-->
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Editar - Id: @Model.<%=fields[0].split(",")[0]%>
+                        </h3>
+                    </div>
+                </div>
+                <!--begin::Form-->
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+                
+                <div class="kt-form">
+                    <div class="kt-portlet__body">
+                        @if (ViewBag.Message != null)
+                        {
+                        <div class="form-group form-group-last">
+                            <div class="alert alert-secondary" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
+                                <div class="alert-text">
+                                    @ViewBag.Message
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        <% for(var i = 0; i < fields.length; i++){ %>                                                    
+                            <%
+                            nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];
+                            %>
+                            <%if(hidden == "h"){%>
+                                @Html.HiddenFor(model => model.<%=nome%>)                                
+                            <%} else{%>
+                                <%if(tipo == "t"){%>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.<%=nome%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-6">
+                                        @Html.EditorFor(model => model.<%=nome%>, new { htmlAttributes = new { @class = "form-control m-input" } })                            
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <%}%>
+                                <%if(tipo == "b"){%>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.<%=nome%>,, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-6">
+                                        <div class="kt-checkbox-list">
+                                            <label class="kt-checkbox">
+                                                @Html.CheckBoxFor(model => model.<%=nome%>,)
+                                                Ativo
+                                                <span></span>
+                                            </label>                                
+                                        </div>
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                                <%if(tipo == "d"){%>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.<%=nome%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-6">
+                                        @Html.EditorFor(model => model.<%=nome%>, new { htmlAttributes = new { @class = "form-control m-input", @placeholder ="Informe a data"  } })                            
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>   
+                                <script>
+                                    $('#<%=nome%>').datepicker({
+                                        rtl: KTUtil.isRTL(),
+                                        todayHighlight: true,
+                                        orientation: "bottom left",
+                                        templates: arrows,
+                                        format: 'dd/mm/yyyy'
+                                    });
+                                    $('#<%=nome%>').on('changeDate', function(ev){
+                                        $(this).datepicker('hide');
+                                    });
+                                </script>    
+                                <%}%>
+                                <%if(tipo == "l"){%>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.<%=nome%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-6">
+                                        @Html.DropDownList("<%=nome%>", null, String.Empty, htmlAttributes: new { @class = "form-control m-select2" })                           
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                            <%}%>nome
+                        <%}%>
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions">
+                            <a href="@Url.Action("Index")" class="btn btn-danger">
+								<i class="fa fa-arrow-left"></i> Voltar
+                            </a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>                            
+                        </div>
+                    </div>
+                </div>                
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->            
+        </div>        
+    </div>
+</div>
+
+<script>
+    $("form").submit(function (event) {
+        $('input[type=submit]').prop('readonly', true);
+        $('input[type=text]').prop('readonly', true);
+        $('input[type=password]').prop('readonly', true);
+        $('input[type=submit]').prop('disabled', true);
+    });
+	$('.m-select2').select2({
+        placeholder: "Selecione uma opção..."
+    });
+</script>

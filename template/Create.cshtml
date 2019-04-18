@@ -35,7 +35,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            <%=Controller%>
+                            Criar - <%=Controller%>
                         </h3>
                     </div>
                 </div>
@@ -59,13 +59,10 @@
                         }
                         <% for(var i = 0; i < fields.length; i++){ %>                                                    
                             <%
-                            nome = fields[i].split(",")[0];                    
-                            tipo = fields[i].split(",")[1];
-                            mask = fields[i].split(",")[2];
-                            hidden = fields[i].split(",")[3];
+                            nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];
                             %>
                             <%if(hidden == "h"){%>
-                            @Html.HiddenFor(model => model.<%=nome%>)
+                                @Html.HiddenFor(model => model.<%=nome%>)                                
                             <%} else{%>
                                 <%if(tipo == "t"){%>
                                 <div class="form-group">
@@ -93,26 +90,44 @@
                                             @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>                            
+                                </div>
                                 <%}%>
                                 <%if(tipo == "d"){%>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.<%=nome%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
                                     <div class="col-lg-6">
-                                        @Html.EditorFor(model => model.<%=nome%>, new { htmlAttributes = new { @class = "form-control m-input" } })                            
+                                        @Html.EditorFor(model => model.<%=nome%>, new { htmlAttributes = new { @class = "form-control m-input", @placeholder ="Informe a data"  } })                            
                                         <div>
                                             @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                </div>       
+                                </div>   
+                                <script>
+                                    $('#<%=nome%>').datepicker({
+                                        rtl: KTUtil.isRTL(),
+                                        todayHighlight: true,
+                                        orientation: "bottom left",
+                                        templates: arrows,
+                                        format: 'dd/mm/yyyy'
+                                    });
+                                    $('#<%=nome%>').on('changeDate', function(ev){
+                                        $(this).datepicker('hide');
+                                    });
+                                </script>    
                                 <%}%>
-
-                            <%}%>
+                                <%if(tipo == "l"){%>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.<%=nome%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-6">
+                                        @Html.DropDownList("<%=nome%>", null, String.Empty, htmlAttributes: new { @class = "form-control m-select2" })                           
+                                        <div>
+                                            @Html.ValidationMessageFor(model => model.<%=nome%>, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                            <%}%>nome
                         <%}%>
-                       
-                        
-                        
-                        
                     </div>
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions">
@@ -127,7 +142,18 @@
                 <!--end::Form-->
             </div>
             <!--end::Portlet-->            
-        </div>
-        
+        </div>        
     </div>
 </div>
+
+<script>
+    $("form").submit(function (event) {
+        $('input[type=submit]').prop('readonly', true);
+        $('input[type=text]').prop('readonly', true);
+        $('input[type=password]').prop('readonly', true);
+        $('input[type=submit]').prop('disabled', true);
+    });
+	$('.m-select2').select2({
+        placeholder: "Selecione uma opção..."
+    });
+</script>
