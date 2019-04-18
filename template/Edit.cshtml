@@ -46,17 +46,7 @@
                 
                 <div class="kt-form">
                     <div class="kt-portlet__body">
-                        @if (ViewBag.Message != null)
-                        {
-                        <div class="form-group form-group-last">
-                            <div class="alert alert-secondary" role="alert">
-                                <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
-                                <div class="alert-text">
-                                    @ViewBag.Message
-                                </div>
-                            </div>
-                        </div>
-                        }
+                        
                         <% for(var i = 0; i < fields.length; i++){ %>                                                    
                             <%
                             nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];
