@@ -6,6 +6,6 @@ namespace <%=Projeto%>.Models.Repository
 {
     public interface I<%=ObjContext%>Repository : IRepository< <%=ObjContext%> >
     {
-        IEnumerable< <%=ObjContext%> > GetIndexValues(DataTableAjaxPostModel param, out int qtdRegistros, out int qtdRegistrosFiltro);
+        IEnumerable< <%=ObjContext%>ViewModel > GetIndexValues(DataTableAjaxPostModel param, out int qtdRegistros, out int qtdRegistrosFiltro);
     }
 }

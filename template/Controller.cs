@@ -10,7 +10,7 @@ using <%=Projeto%>.Models.Repository;
 
 namespace <%=Projeto%>.Controllers
 {
-    public class <%=Controller%> : Controller
+    public class <%=Controller%>Controller : Controller
     {
         private readonly IUnitOfWork _context;
 
@@ -28,6 +28,7 @@ namespace <%=Projeto%>.Controllers
             {
                 ViewBag.Message = e.Message;
                 ViewBag.Type    = "danger";
+                return View();
             }
         }
 
@@ -81,7 +82,8 @@ namespace <%=Projeto%>.Controllers
         public IActionResult Create()
         {
             try{
-                return View();
+                <%=ObjContext%> <%=ObjContext%> = new <%=ObjContext%>();
+                return View(<%=ObjContext%>);
             }catch(Exception e)
             {
              	ViewBag.Message = e.Message;
@@ -160,7 +162,7 @@ namespace <%=Projeto%>.Controllers
                     }
                     catch (DbUpdateConcurrencyException)
                     {
-                        if (!EntityExists(entity.IdSexo))
+                        if (!EntityExists(entity.<%=PrimaryKeyDb%>))
                         {
                             return NotFound();
                         }
