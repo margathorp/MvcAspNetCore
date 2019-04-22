@@ -6,12 +6,20 @@ module.exports = {
       {
         name: 'Projeto',
         message: 'Nome do Projeto',
-        default: ""
+        default: "",
+        store: true
+      },
+      {
+        name: 'Area',
+        message: 'Nome da Area',
+        default: "",
+        store: true
       },
       {
         name: 'Controller',
-        message: 'Nome da Area/Controller',
-        default: ""
+        message: 'Nome do Controller',
+        default: "",
+        store: true
       },
       {
         name: 'ObjContext',
@@ -20,8 +28,20 @@ module.exports = {
         store: true
       },
       {
+        name: 'PrimaryKeyModel',
+        message: 'Chave Primária Model',
+        default:"",
+        store: true
+      },
+      {
+        name: 'PrimaryKeyDb',
+        message: 'Chave Primária Db',
+        default:"",
+        store: true
+      },
+      {
         name: 'Fields',
-        message: 'Campo,Tipo(text/date/bool/list),Mascara,Hidden(h/s)',
+        message: 'Campo,Tipo(text/date/bool/list),Mascara,Hidden(h/s),NomeDatabase,DescTela',
         default: "",
         store: true
       },
@@ -30,22 +50,36 @@ module.exports = {
         message: 'Informe os includes',
         default: "",
         store: true
+      },
+      {
+        name: 'EnderecoLista',
+        message: 'Informe Endereço da Listagem',
+        default: "",
+        store: true
       }
 
     ]
   },
   actions: [
     {
-      type: 'move',
+      type: 'add',
       files: 'Controller.cs'
     },
     {
       type: 'add',
-      files: 'DTO.cs'
+      files: 'ViewModel.cs'
     },
     {
       type: 'add',
       files: 'Repository.cs'
+    },
+    {
+      type: 'add',
+      files: 'IRepository.cs'
+    },
+    {
+      type: 'add',
+      files: 'Index.cshtml' 
     },
     {
       type: 'add',
@@ -62,11 +96,8 @@ module.exports = {
     {
       type: 'add',
       files: 'Delete.cshtml'
-    },
-    {
-      type: 'add',
-      files: 'Index.cshtml' 
     }
+    
   ],
   async completed() {
     this.gitInit()

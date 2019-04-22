@@ -5,10 +5,11 @@
     var mask = "";
     var hidden = "";    
 %>
-@@model <%=Projeto%>.Models.Context<%=ObjContext%>
+@model <%=Projeto%>.Models.Context.<%=ObjContext%>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Detalhes - <%=ObjContext%>";
 }
 
 <!-- begin:: Content Head -->
@@ -45,23 +46,23 @@
                         <dl class="row">
                             <% for(var i = 0; i < fields.length; i++){ %>                                                    
                             <%
-                                nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];
+                                nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];
                             %>
                             <dt class = "col-sm-2">
-                                @Html.DisplayNameFor(model => model.<%=nome%>)
+                                @Html.DisplayNameFor(model => model.<%=databasename%>)
                             </dt>
                             <dd class = "col-sm-10">
-                                @Html.DisplayFor(model => model.<%=nome%>)
+                                @Html.DisplayFor(model => model.<%=databasename%>)
                             </dd>
                             <%}%>
                         </dl>				
                     </div>
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions">
-                           <a href="@Url.Action("Index")" class="btn btn-danger">
+                           <a href='@Url.Action("Index")'' class="btn btn-danger">
 								<i class="fa fa-arrow-left"></i> Voltar
                             </a>
-                            <a href="@Url.Action("Edit", new{id = @Model.<%=fields[0].split(",")[0]%> })" class="btn btn-warning">
+                            <a href='@Url.Action("Edit", new{id = @Model.<%=PrimaryKeyDb%> })'' class="btn btn-warning">
 								<i class="fa fa-edit"></i> Editar
                             </a>
                         </div>
