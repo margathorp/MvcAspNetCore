@@ -3,8 +3,7 @@
     var tipo = "";
     var mask = "";
     var hidden = ""; 
-    var databasename = "";
-    var includes = Includes.split(",")%>
+    var databasename = "";%>
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -47,8 +46,6 @@ namespace <%=Projeto%>.Models.Repository
             }
             qtdRegistros = _dbSet.Count();
             var query = _dbSet
-                        <%for(var i = 0; i < includes.length; i++){%>
-                         .Include("<%=includes[i]%>") <%}%>
                         .Select(q => new <%=ObjContext%>ViewModel()                        
                         {Actions = q.<%=PrimaryKeyDb%>,
                             <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%>

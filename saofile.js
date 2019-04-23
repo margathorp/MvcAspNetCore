@@ -46,12 +46,6 @@ module.exports = {
         store: true
       },
       {
-        name: 'Includes',
-        message: 'Informe os includes',
-        default: "",
-        store: true
-      },
-      {
         name: 'EnderecoLista',
         message: 'Informe Endereço da Listagem',
         default: "",

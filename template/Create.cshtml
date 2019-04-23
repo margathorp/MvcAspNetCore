@@ -55,7 +55,7 @@
                             <%if(hidden == "h"){%>
                                 @Html.HiddenFor(model => model.<%=databasename%>)                                
                             <%} else{%>
-                                <%if(tipo == "string" || tipo == "int" || tipo == "strring"){%>
+                                <%if(tipo == "string" || tipo == "int"){%>
                                     <%if(hidden == "l"){%>
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.<%=databasename%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <%} else%>
+                                    <%} else{%>
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.<%=databasename%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
                                         <div class="col-lg-6">
@@ -76,6 +76,7 @@
                                             </div>
                                         </div>
                                     </div>                            
+                                    <%}%>
                                 <%}%>
                                 <%if(tipo == "bool"){%>
                                 <div class="form-group">
@@ -98,7 +99,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.<%=databasename%>, htmlAttributes: new { @class = "col-lg-3 col-form-label" })
                                     <div class="col-lg-6">
-                                        @Html.EditorFor(model => model.<%=databasename%>, new { htmlAttributes = new { @class = "form-control m-input", @placeholder ="Informe a data"  } })                            
+                                        @Html.TextBoxFor(model => model.<%=databasename%>, new { @class = "form-control m-input", @placeholder ="Informe a data"  })                            
                                         <div>
                                             @Html.ValidationMessageFor(model => model.<%=databasename%>, "", new { @class = "text-danger" })
                                         </div>
@@ -109,8 +110,8 @@
                                         rtl: KTUtil.isRTL(),
                                         todayHighlight: true,
                                         orientation: "bottom left",
-                                        templates: arrows,
-                                        format: 'dd/mm/yyyy'
+                                        format: 'dd/mm/yyyy',                
+                                        language: 'pt-BR'
                                     });
                                     $('#<%=databasename%>').on('changeDate', function(ev){
                                         $(this).datepicker('hide');
