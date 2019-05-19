@@ -23,7 +23,7 @@
 			<div class="kt-portlet__head-toolbar">
 				<div class="kt-portlet__head-wrapper">
 					<div class="kt-portlet__head-actions">					
-						<a href="<%=AreaController%>Create" class="btn btn-brand btn-elevate btn-icon-sm">
+						<a href='@Url.Action("Create")' class="btn btn-brand btn-elevate btn-icon-sm">
 							<i class="la la-plus"></i>
 							Registro
 						</a>
@@ -35,7 +35,7 @@
 			<!--begin: Search Form -->
 			<form class="kt-form kt-form--fit kt-margin-b-20">
 				<div class="row kt-margin-b-20">
-                    <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%>
+                    <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>%>
 					<div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
 						<label><%=nometela%></label>
                         <%if(tipo == "bool"){%> 
@@ -81,7 +81,7 @@
 				<thead>
 					<tr>
                         <th>Actions</th>
-                        <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%>
+                        <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>%>
                         <th><%=nome%></th><%}%>														
 					</tr>
 				</thead>				
@@ -128,14 +128,14 @@ var KTDatatablesSearchOptionsAdvancedSearch = function() {
 					// parameters for custom backend script demo
 					columnsDef: [
                         'Actions',
-                       <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%> 
+                       <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>%> 
                        '<%=nome%>',<%}%>
                     ],
 				},
 			},
 			columns: [
                 {data: 'Actions', responsivePriority: -1},
-				<% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%> 
+				<% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>%> 
                 {data: '<%=nome%>'},<%}%>
 			],
 
@@ -157,12 +157,12 @@ var KTDatatablesSearchOptionsAdvancedSearch = function() {
                             <div class="dropdown-menu dropdown-menu-rigth">
                                 <a class="dropdown-item" href="/<%=Controller%>/Details/` + full.<%=PrimaryKeyModel%> +`" ><i class="fa fa-eye"></i> Detalhes</a>
                                 <a class="dropdown-item" href="/<%=Controller%>/Edit/` + full.<%=PrimaryKeyModel%> + `"><i class="la la-edit"></i>Editar</a>
-                                <a class="dropdown-item" href="/<%=Controller%>/Delete/` + full.<%=PrimaryKeyModel%> +`"><i class="la la-print"></i>Excluir</a>
+                                <a class="dropdown-item" href="/<%=Controller%>/Delete/` + full.<%=PrimaryKeyModel%> +`"><i class="fa fa-eraser"></i>Excluir</a>
                             </div>
                         </span>`;
 					},
 				},
-                <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];%> 
+                <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>%> 
                     
 					<%if(tipo == "bool"){%>
                 {

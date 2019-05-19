@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         name: 'Fields',
-        message: 'Campo,Tipo(text/date/bool/list),Mascara,Hidden(h/s),NomeDatabase,DescTela',
+        message: 'Campo,Tipo(text/date/bool/list),Mascara,Hidden(h/s),NomeDatabase,DescTela,required(*),RequiredText',
         default: "",
         store: true
       },
@@ -73,6 +73,10 @@ module.exports = {
     },
     {
       type: 'add',
+      files: 'Metadata.cs'
+    },
+    {
+      type: 'add',
       files: 'Index.cshtml' 
     },
     {
@@ -91,6 +95,7 @@ module.exports = {
       type: 'add',
       files: 'Delete.cshtml'
     }
+    
     
   ],
   async completed() {

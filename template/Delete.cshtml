@@ -59,6 +59,16 @@
                     </div>
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions">
+                            @using (Html.BeginForm()) {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="Excluir" class="btn btn-danger" />        
+                            }
+                           
+                        </div>
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions">
+                            
                            <a href='@Url.Action("Index")' class="btn btn-danger">
 								<i class="fa fa-arrow-left"></i> Voltar
                             </a>
