@@ -92,6 +92,17 @@
 </div>
 <!-- end:: Content -->
 <script>
+
+$(".date").datepicker({
+    rtl: KTUtil.isRTL(),
+    todayHighlight: true,
+    orientation: "bottom left",                                        
+    format: 'yyyy-mm-dd',                
+    language: 'pt-BR'
+});
+$('.date').on('changeDate', function(ev){
+    $(this).datepicker('hide');
+});
 	
 var KTDatatablesSearchOptionsAdvancedSearch = function() {
 	$.fn.dataTable.Api.register('column().title()', function() {
