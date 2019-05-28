@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 %>
 namespace <%=Projeto%>.Models.Context
 {
-    [ModelMetadata(typeof(I<%=ObjContext%>Metadata))]
+    [ModelMetadataType(typeof(I<%=ObjContext%>Metadata))]
     public partial class <%=ObjContext%>:I<%=ObjContext%>Metadata{}
     public interface I<%=ObjContext%>Metadata
     {   <% for(var i = 0; i < fields.length; i++){ nome = fields[i].split(",")[0]; tipo = fields[i].split(",")[1]; mask = fields[i].split(",")[2];hidden = fields[i].split(",")[3];databasename = fields[i].split(",")[4];nometela = fields[i].split(",")[5];required = fields[i].split(",")[6];requiredtxt = fields[i].split(",")[7];%>

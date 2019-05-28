@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using <%=Projeto%>.Models.Context;
 using <%=Projeto%>.Models.Repository;
+using <%=Projeto%>.Models.Repository.Interfaces;
+using <%=Projeto%>.Models.ViewModel;
 
 namespace <%=Projeto%>.Controllers
 {
