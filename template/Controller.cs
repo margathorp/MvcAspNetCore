@@ -12,13 +12,16 @@ using <%=Projeto%>.Models.ViewModel;
 
 namespace <%=Projeto%>.Controllers
 {
+    <%if(Area != ""){%>[Area("<%=Area%>")] <%}%>
     public class <%=Controller%>Controller : Controller
     {
         private readonly IUnitOfWork _context;
+        private readonly UserManager<User> _userManager;
 
-        public <%=Controller%>Controller(IUnitOfWork context)
+        public <%=Controller%>Controller(IUnitOfWork context, UserManager<User> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
 
         // GET: <%=Controller%>
@@ -233,6 +236,12 @@ namespace <%=Projeto%>.Controllers
                 return false;
             }
             return true;
+        }
+        private async Task<User> GetUserLoginAsync()
+        {
+            var teste = User.Identity.Name;
+            User usr = await _userManager.FindByNameAsync(teste);
+            return usr;
         }
     }
 }
