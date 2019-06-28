@@ -9,6 +9,13 @@
     if(Area != ""){AreaControler = '/' +Area+'/'+Controller}else{AreaController = '/'+Controller+'/'};
     %>
 @model <%=Projeto%>.Models.Context.<%=ObjContext%>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -90,6 +97,8 @@
         </div>
 	</div>
 </div>
+<input type="hidden" id="RequestVerificationToken" 
+       name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
 <!-- end:: Content -->
 <script>
 
@@ -133,6 +142,9 @@ var KTDatatablesSearchOptionsAdvancedSearch = function() {
 			processing: true,
 			serverSide: true,
 			ajax: {
+				headers:{
+					"RequestVerificationToken": token
+				},
 				url: '<%=EnderecoLista%>',
 				type: 'POST',
 				data: {

@@ -38,6 +38,7 @@ namespace <%=Projeto%>.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Lista<%=Controller%>(DataTableAjaxPostModel param)
         {
             try{
