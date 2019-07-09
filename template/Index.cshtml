@@ -101,7 +101,7 @@
        name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
 <!-- end:: Content -->
 <script>
-
+var token = document.getElementById("RequestVerificationToken").value;
 $(".date").datepicker({
     rtl: KTUtil.isRTL(),
     todayHighlight: true,

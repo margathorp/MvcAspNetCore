@@ -1,4 +1,6 @@
+using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 <%
     var fields = Fields.split("|");
