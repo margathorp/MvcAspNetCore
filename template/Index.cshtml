@@ -112,7 +112,7 @@ $(".date").datepicker({
 $('.date').on('changeDate', function(ev){
     $(this).datepicker('hide');
 });
-	
+var token = document.getElementById("RequestVerificationToken").value;		
 var KTDatatablesSearchOptionsAdvancedSearch = function() {
 	$.fn.dataTable.Api.register('column().title()', function() {
 		return $(this.header()).text().trim();
